@@ -204,6 +204,9 @@ export const ImgStore = defineStore({
         click_reset() {
             window.location.reload();
         },
+        click_go_to_Home() {
+            window.location.reload();
+        },
 
         // click new game
         click_new_game() {
