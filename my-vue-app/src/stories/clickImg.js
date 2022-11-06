@@ -180,7 +180,7 @@ export const ImgStore = defineStore({
                 }
                 if(this.pass_img == 12 || this.time_play <= 0) {
                     this.game_status = 2;
-                    if(this.game_status != 0) {
+                    if(this.pass_img != 0) {
                         this.total_score = (this.score + this.time_play * 10 + (1 / this.number_of_click) * 25000).toFixed();
                     }
                 }
