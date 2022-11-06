@@ -112,10 +112,10 @@ export const ImgStore = defineStore({
         is_check_index: -1,             // index của ảnh khi được click
         last_index_check: -1,           // index sau khi click lần 1
         last_id: -1,                // id sau khi click lần 1
-        total_score: 0,                 // tổng điểm đạt được = điểm +  (thời gian còn lại)*100 + (1/số lần click) * 1000
+        total_score: 0,                 // tổng điểm đạt được = điểm +  (thời gian còn lại)*10 + (1/số lần click) * 25000
         start_game: false,                // trạng thái bắt đầu của game (true là bắt đầu, false là đang đợi)
         game_status: 0,             // trạng thái game khi đang chơi (0 là đang chơi, 1 là tạm dừng, 2 là kết thúc)
-        time_play: 3,                  // thời gian giới hạn một lượt chơi 
+        time_play: 180,                  // thời gian giới hạn một lượt chơi 
         pass_img: 0,                // số ảnh đã hoàn thành
         score: 0,                   // điểm số nhận được mỗi khi hoàn thành 1 cặp ảnh
         number_of_click: 0,         // tổng số lần click
@@ -181,7 +181,7 @@ export const ImgStore = defineStore({
                 if(this.pass_img == 12 || this.time_play <= 0) {
                     this.game_status = 2;
                     if(this.game_status != 0) {
-                        this.total_score = this.score + this.time_play * 100 + (1 / this.number_of_click) * 1000;
+                        this.total_score = (this.score + this.time_play * 10 + (1 / this.number_of_click) * 25000).toFixed();
                     }
                 }
             }, 1000);

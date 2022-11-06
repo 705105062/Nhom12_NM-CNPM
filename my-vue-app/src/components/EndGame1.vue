@@ -3,8 +3,8 @@
     <div class="w-[70%] text-c_blue text-5xl font-bold p-[20px] border-[5px] bg-white border-c_gray rounded-[15px] hover:bg-c_gray hover:border-white hover:text-white ease-in-out duration-300" >
         <p>Bạn được {{ img.total_score }} điểm </p>
         <div class="text-3xl text-right mt-[5%]">
-            <p v-if="img.total_score <= 5000">Cùng thử lại nào!! </p>
-            <p v-else-if="img.total_score <= 10000">Cố lên!! </p>
+            <p v-if="img.total_score <= 500">Cùng thử lại nào!! </p>
+            <p v-else-if="img.total_score <= 2500">Cố lên!! </p>
             <p v-else>Woww !! Giỏi quá!! </p>
         </div>
         
