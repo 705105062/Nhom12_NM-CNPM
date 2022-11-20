@@ -1,17 +1,17 @@
 <template>
     <div class="bxh min-h-[700px]  text-center flex flex-col justify-center items-center">
-        <div class="w-[40%] text-c_gray text-5xl font-bold p-[20px] border-[5px] bg-white border-c_gray rounded hover:bg-c_gray hover:border-white hover:text-white ease-in-out duration-300"
+        <div class="btn"
             @click="img.click_resume()">
-            <p>Resume</p>
+            <p>Tiếp tục</p>
         </div>
         <div
-            class="w-[40%] my-[3%] text-c_gray text-5xl font-bold p-[20px] border-[5px] bg-white border-c_gray rounded hover:bg-c_gray hover:border-white hover:text-white ease-in-out duration-300" @click="img.click_reset()">
-                <p>Reset</p>
+            class="btn my-[3%]" @click="img.click_reset()">
+                <p>Làm mới</p>
         </div>
         <div
-            class="w-[40%] text-c_gray text-5xl font-bold p-[20px] border-[5px] bg-white border-c_gray rounded hover:bg-c_gray hover:border-white hover:text-white ease-in-out duration-300" @click="img.click_go_to_Home()">
+            class="btn" @click="img.click_go_to_Home()">
             <RouterLink :to="{ path: '/' }">
-                <p>Go to Home</p>
+                <p>Về trang chủ</p>
             </RouterLink>
         </div>
 
@@ -22,7 +22,7 @@
 <style scoped>
 .bxh {
     padding-bottom: 2%;
-    background-image: url("../assets/game1/pause_game_2.jpg");
+    background-image: url("../assets/game1/pause.png");
     background-size: cover;
 }
 

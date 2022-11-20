@@ -4,18 +4,18 @@
         <p>Bạn được {{ img.total_score }} điểm </p>
         <div class="text-3xl text-right mt-[5%]">
             <p v-if="img.total_score <= 500">Cùng thử lại nào!! </p>
-            <p v-else-if="img.total_score <= 2500">Cố lên!! </p>
+            <p v-else-if="img.total_score <= 2000">Cố lên!! </p>
             <p v-else>Woww !! Giỏi quá!! </p>
         </div>
         
     </div>
-    <div class="w-[40%] my-[3%] text-c_gray text-5xl font-bold p-[20px] border-[5px] bg-white border-c_gray rounded hover:bg-c_gray hover:border-white hover:text-white ease-in-out duration-300"
+    <div class="btn_white my-[3%]"
         @click="img.click_new_game()">
-        <a href="./StartGame1.vue"></a><p>New Game</p>
+        <a href="./StartGame1.vue"></a><p>Trò chơi mới</p>
     </div>
-    <div class="w-[40%] text-c_gray text-5xl font-bold p-[20px] border-[5px] bg-white border-c_gray rounded hover:bg-c_gray hover:border-white hover:text-white ease-in-out duration-300" @click="img.click_exit()">
+    <div class="btn_white" @click="img.click_exit()">
         <RouterLink :to="{ path: '/'}">
-            <p>Exit</p>
+            <p>Thoát</p>
         </RouterLink>
     </div>
     
@@ -25,7 +25,7 @@
 <style scoped>
 .table_score{
     padding-bottom: 2%;
-    background-image: url("../assets/EndGame/bg_end_game_2.png");
+    background-image: url("../assets/EndGame/bg_end_game.png");
     background-size: cover;
 }
 .item_title {

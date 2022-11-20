@@ -88,17 +88,17 @@ const list_data = [
     },
 ];
 
-let x = 0;
+let list_data_copy = JSON.parse(JSON.stringify(list_data));
+let sort_list_data_copy = list_data_copy.sort(func);
 
-let list2 = JSON.parse(JSON.stringify(list_data));
+let easy_list = sort_list_data_copy.slice(0, 3);
+let normal_list = sort_list_data_copy.slice(0, 6);
+let hard_list = sort_list_data_copy;
 
-let double_list = list_data.concat(list2);
-
-let list_data_last = double_list.sort(func);
-list_data_last.map((state) => {
-    state.id = x;
-    x++;
-})
+function slice_random(b) {
+    console.log("line 109");
+    return list_data_2.slice(0, b);
+}
 
 function func() {
     return 0.5 - Math.random();
@@ -108,7 +108,7 @@ export const ImgStore = defineStore({
     id: 'img',
     state: () => ({
         click_2: false,              // lần click thứ 2
-        list: list_data_last,       // danh sách img
+        list: [],       // danh sách img
         is_check_index: -1,             // index của ảnh khi được click
         last_index_check: -1,           // index sau khi click lần 1
         last_id: -1,                // id sau khi click lần 1
@@ -119,7 +119,7 @@ export const ImgStore = defineStore({
         pass_img: 0,                // số ảnh đã hoàn thành
         score: 0,                   // điểm số nhận được mỗi khi hoàn thành 1 cặp ảnh
         number_of_click: 0,         // tổng số lần click
-        
+        level: 0,                     // level cho game
     }),
     actions: {
         clickImg(a) {
@@ -135,26 +135,26 @@ export const ImgStore = defineStore({
         // a là id của ảnh được click
         check_time_click(a) {
             this.is_check_index = this.list[a].index;
-            this.number_of_click ++;
-            if(!this.click_2) {
+            this.number_of_click++;
+            if (!this.click_2) {
                 this.last_id = a;
                 this.click_to_img(a, 2);
                 this.last_index_check = this.list[a].index;
                 this.click_2 = true;
             } else {
-                if(this.list[a].status == 1) {
+                if (this.list[a].status == 1) {
                     this.click_to_img(a, 2);
-                    if(this.is_check_index == this.last_index_check) {
+                    if (this.is_check_index == this.last_index_check) {
                         this.time_open_img(a, 3);
                         this.time_open_img(this.last_id, 3);
-                        this.pass_img ++;
+                        this.pass_img++;
                         this.score += 100;
                     } else {
                         this.time_open_img(a, 1);
                         this.time_open_img(this.last_id, 1);
                     }
                 } else {
-                    
+
                     this.time_open_img(a, 1);
                 }
                 this.click_2 = false;
@@ -175,21 +175,44 @@ export const ImgStore = defineStore({
             this.start_game = true;
             this.game_status = 0;
             window.setInterval(() => {
-                if(this.game_status == 0 && this.time_play > 0 && this.pass_img < 12) {
-                    this.time_play --;
+                if (this.game_status == 0 && this.time_play > 0 && this.pass_img < this.list.length) {
+                    this.time_play--;
                 }
-                if(this.pass_img == 12 || this.time_play <= 0) {
+                if (this.pass_img == this.list.length / 2 || this.time_play <= 0) {
                     this.game_status = 2;
-                    if(this.pass_img != 0) {
-                        this.total_score = (this.score + this.time_play * 10 + (1 / this.number_of_click) * 25000).toFixed();
+                    if (this.pass_img != 0) {
+                        this.total_score = (this.score + this.time_play * 10 + (1 / this.number_of_click) * 2500).toFixed();
                     }
                 }
             }, 1000);
         },
 
         // click start để chơi game
-        click_start() {
+        click_start(a) {
             // this.on_start_game();
+            this.level = a;
+            localStorage.setItem('level_game', this.level);
+
+            let list2 = [];
+            let double_list = [];
+            if (a == 1) {
+                list2 = JSON.parse(JSON.stringify(easy_list));
+                double_list = easy_list.concat(list2);
+
+            } else if (a == 2) {
+                list2 = JSON.parse(JSON.stringify(normal_list));
+                double_list = normal_list.concat(list2);
+            } else {
+                list2 = JSON.parse(JSON.stringify(hard_list));
+                double_list = hard_list.concat(list2);
+            }
+            let list_data_last = double_list.sort(func);
+            let x = 0;
+            list_data_last.map((state) => {
+                state.id = x;
+                x++;
+            })
+            this.list = list_data_last;
         },
 
         // click pause
@@ -202,7 +225,12 @@ export const ImgStore = defineStore({
         },
         // click reset để làm mới game
         click_reset() {
+            console.log("line 231: " + localStorage.getItem('level_game'));
+            // setTimeout(() => {
+            //     window.location.reload();
+            // }, 500)
             window.location.reload();
+            
         },
         click_go_to_Home() {
             window.location.reload();

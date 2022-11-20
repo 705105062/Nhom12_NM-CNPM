@@ -6,13 +6,13 @@
                 <p>Top</p>
             </div>
             <div class="name item_title col-span-3">
-                <p>Player's Name</p>
+                <p>Tên người chơi</p>
             </div>
             <div class="date item_title col-span-3">
-                <p>DateTime</p>
+                <p>Ngày chơi</p>
             </div>
             <div class="score col-span-2">
-                <p>Score</p>
+                <p>Điểm</p>
             </div>
         </div>
         <div class="content_bxh grid grid-cols-9 mt-[2%] mb-[1%]">

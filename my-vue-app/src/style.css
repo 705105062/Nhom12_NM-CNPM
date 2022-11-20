@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply w-[40%] text-white text-5xl font-bold p-[20px] border-[5px] bg-c_gray border-white rounded hover:bg-white hover:border-c_gray hover:text-c_gray ease-in-out duration-300;
+    }
+    .btn_white {
+        @apply w-[40%] text-c_gray text-5xl font-bold p-[20px] border-[5px] bg-white border-c_gray rounded hover:bg-c_gray hover:border-white hover:text-white ease-in-out duration-300;
+    }
+}

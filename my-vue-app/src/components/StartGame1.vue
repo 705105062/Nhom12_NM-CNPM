@@ -1,19 +1,22 @@
 <template>
+<audio autoplay loop preload="auto">
+    <source src="../audio/audio.mp3">
+</audio>
 <div class="start_bg min-w-screen min-h-screen text-center flex flex-col justify-center items-center">
-    <div class="w-[40%] text-white text-5xl font-bold p-[20px] border-[5px] bg-c_gray border-white rounded hover:bg-white hover:border-c_gray hover:text-c_gray ease-in-out duration-300" >
-        <RouterLink :to="{ path: '/game1/play_to_similar'}" @click="img.click_start()">
-            <p>Start</p>
+    <div class="btn" >
+        <RouterLink :to="{ path: '/game1/choose_level'}">
+            <p>Bắt đầu</p>
         </RouterLink>
     </div>
     
-    <div class="w-[40%] my-[3%] text-white text-5xl font-bold p-[20px] border-[5px] bg-c_gray border-white rounded hover:bg-white hover:border-c_gray hover:text-c_gray ease-in-out duration-300" >
+    <div class="btn my-[3%]" >
         <RouterLink :to="{ path: '/'}">
-            <p>Go to Home</p>
+            <p>Về trang chủ</p>
         </RouterLink>
     </div>
-    <div class="w-[40%] text-white text-5xl font-bold p-[20px] border-[5px] bg-c_gray border-white rounded hover:bg-white hover:border-c_gray hover:text-c_gray ease-in-out duration-300" >
+    <div class="btn" >
         <RouterLink :to="{ path: '/game1/bxh'}">
-            <p>Go to Ranking</p>
+            <p>Xem BXH</p>
         </RouterLink>
     </div>
 </div>
@@ -26,8 +29,3 @@
     background-size: cover;
 }
 </style>
-
-<script setup>
-import { ImgStore } from '../stories/clickImg';
-const img = ImgStore();
-</script>
